@@ -1,0 +1,137 @@
+Plan en 6 étapes (avec checks clairs)
+
+Étape 0 — Préparer le terrain
+
+Objectif : avoir ton dossier, ton venv activé, et ton fichier HTML prêt.
+	•	Crée un dossier projet avec un sous-dossier data et mets ton fichier HTML dedans.
+	•	Assure-toi que ton interpréteur Python utilise bien ton environnement virtuel (venv).
+Tu sais que c’est bon si :
+	•	Tu peux afficher le chemin absolu de ton HTML et t’y référer sans erreur de “fichier introuvable”.
+	•	Les bibliothèques nécessaires sont installées (analyse HTML, embeddings, etc.).
+
+⸻
+
+Étape 1 — Extraire du texte propre depuis le HTML
+
+But : transformer ton fichier HTML en texte lisible (sans <script>, <style>, menus).
+Ce que tu fais :
+	•	Ouvrir le fichier HTML et en extraire tout le texte visible.
+	•	Supprimer le bruit évident (scripts, styles, noscript, navigation/pieds de page si faciles à repérer).
+	•	Normaliser les espaces (pas de pavés illisibles).
+Validation (imprime/affiche un extrait) :
+	•	Tu peux afficher les 300–500 premiers caractères et ça ressemble à du vrai contenu (titres/paragraphes).
+	•	Longueur totale raisonnable (souvent plusieurs dizaines de milliers de caractères pour une longue page).
+Pièges fréquents :
+	•	Garde l’encodage UTF-8 à la lecture du fichier pour éviter les caractères bizarres.
+	•	Vérifie que tu ne récupères pas les menus de site ou les listes de navigation (si oui, affine le nettoyage).
+
+⸻
+
+Étape 2 — Découper en “chunks”
+
+But : obtenir une liste de segments de texte ~200–300 mots chacun, avec un léger chevauchement (ex. 40–60 mots).
+Ce que tu fais :
+	•	Découper le texte par mots (pas par caractères) pour ne pas casser les phrases.
+	•	Créer des segments de taille régulière (ex. 250 mots) avec un overlap (ex. 50 mots).
+	•	Conserver un tableau/list de chunks (chaque élément = une portion de texte).
+Validation (affiche des stats) :
+	•	Nombre de chunks ≥ 5 pour une page un peu longue.
+	•	Longueur moyenne ~200–300 mots ; aucun chunk vide.
+	•	Afficher 2–3 chunks au hasard pour vérifier que ça “lit bien”.
+Pièges fréquents :
+	•	Chunks trop petits → retrieval médiocre ; trop gros → dépasse la mémoire/contexte plus tard.
+
+⸻
+
+Étape 3 — Créer les “empreintes” (embeddings)
+
+But : convertir chaque chunk en un vecteur numérique comparable à une question.
+Ce que tu fais :
+	•	Charger un modèle d’embeddings (par ex. une petite phrase-transformer).
+	•	Transformer chaque chunk en vecteur.
+	•	Normaliser les vecteurs (norme ≈ 1) pour utiliser la similarité cosinus proprement.
+Validation (imprime des infos simples) :
+	•	Tu obtiens autant de vecteurs que de chunks.
+	•	Les normes sont proches de 1 (tolérance d’erreur faible).
+Pièges fréquents :
+	•	Oublier la normalisation → scores incohérents.
+	•	Confondre embeddings de chunks et embedding de question (il faudra faire les deux plus tard).
+
+⸻
+
+Étape 4 — Recherche sémantique (retriever)
+
+But : pour une question utilisateur, retrouver les top-k chunks les plus pertinents.
+Ce que tu fais :
+	•	Convertir la question en vecteur (même modèle).
+	•	Calculer la similarité cosinus entre la question et tous les chunks.
+	•	Trier par score décroissant et garder les k meilleurs (ex. k=3 à 5).
+	•	Appliquer un seuil de score (ex. 0.25–0.40) : en dessous → “Je ne sais pas”.
+Validation (tests manuels) :
+	•	Pose une question contenant un mot-clé unique présent dans la page → le bon passage remonte top-3.
+	•	Pose une question hors sujet → réponse “Je ne sais pas…” (pas d’invention).
+	•	Affiche les scores : tu vois une nette différence entre top-1 et les suivants sur une question précise.
+Pièges fréquents :
+	•	Ne pas afficher les scores → difficile de diagnostiquer.
+	•	k trop élevé → tu mélanges du bruit dans le contexte.
+
+⸻
+
+Étape 5 — Générer une réponse (MVP sans LLM)
+
+But : retourner une réponse simple et sûre sans modèle de génération.
+Ce que tu fais :
+	•	Construire une réponse minimale à partir du meilleur chunk (ou top-k).
+	•	Formuler : “Voici l’extrait pertinent : …” + éventuellement mentionner la source (nom de fichier + indices).
+	•	Si le score top-1 < seuil → “Je ne sais pas sur la base du document.”
+Validation :
+	•	Sur une question pertinente, tu vois un extrait cohérent.
+	•	Sur une question hors-périmètre, tu refuses proprement.
+Pièges fréquents :
+	•	Coller un énorme chunk en entier → sois parcimonieux (petit extrait).
+	•	Oublier d’afficher la raison du refus (score trop bas).
+
+⸻
+
+Étape 6 — (Optionnel) Passer à une vraie réponse avec un LLM
+
+But : transformer le(s) chunk(s) pertinent(s) en réponse rédigée.
+Ce que tu fais :
+	•	Construire un prompt clair : “Réponds uniquement à partir de ce contexte : … ; si l’info n’y est pas, dis que tu ne sais pas ; ajoute 1–2 citations (nom du fichier).”
+	•	Envoyer question + contexte au LLM choisi.
+	•	Renvoyer la réponse au format court et avec sources.
+Validation :
+	•	Les réponses ne contiennent pas d’infos absentes des chunks.
+	•	Tu vois les citations renvoyées par la réponse.
+Pièges fréquents :
+	•	Trop de contexte → dépassement du contexte du modèle.
+	•	Pas assez de garde-fous → hallucinations.
+
+⸻
+
+Petits “rituels” de vérification à chaque étape
+	•	À la fin de l’extraction HTML : aperçu propre (quelques lignes), pas de scripts/menus.
+	•	Après le découpage : nombre de chunks, taille moyenne, inspection de 2–3 exemples.
+	•	Après embeddings : tailles conformes, norme ≈ 1.
+	•	Après retrieval : affiche top-k + scores ; teste une question facile et une hors sujet.
+	•	Après réponse : phrase courte, extrait bref, citation de la source ; refus propre si nécessaire.
+
+⸻
+
+Débogage rapide (checklist)
+	•	Fichier introuvable : imprime le chemin absolu du fichier ; vérifie le dossier courant.
+	•	Texte illisible : encodage UTF-8 ; supprimer script/style/noscript; réduire espaces multiples.
+	•	Résultats nuls : chunks trop gros/petits ; pas de normalisation ; seuil trop élevé ; question mal formulée (essaie un mot-clé très présent).
+	•	Réponses “magiques” : si tu branches un LLM, impose “réponds uniquement à partir du contexte” + refus explicite.
+
+⸻
+
+Feuille de route courte (tu peux suivre exactement ça)
+	1.	Lecture HTML + nettoyage → aperçu 300–500 caractères.
+	2.	Découpage → au moins 5 chunks, tailles régulières, petit overlap.
+	3.	Embeddings → un vecteur par chunk + normalisation ; contrôle des dimensions/normes.
+	4.	Retrieval → top-k + scores imprimés ; test question facile qui doit marcher, test hors sujet qui doit refuser.
+	5.	Réponse MVP → renvoyer l’extrait + source, sinon “Je ne sais pas”.
+	6.	(Optionnel) Brancher un LLM avec un prompt de garde-fous.
+
+⸻
