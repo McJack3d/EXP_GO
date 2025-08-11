@@ -1,0 +1,76 @@
+Feuille de route – Projet “Sport & Fitness Classifier” (5 h)
+
+0) But et métrique
+	•	Objectif : prédire si une personne est “fit” ou non (is_fit) en fonction de ses données santé et habitudes.
+	•	Type de problème : Classification binaire.
+	•	Métriques principales :
+	•	Accuracy (score global simple)
+	•	F1-score (utile si classes déséquilibrées)
+
+⸻
+
+1) Chargement & inspection rapide (20 min)
+	•	Charger le fichier de données et vérifier :
+	•	Les noms de colonnes X
+	•	Les types de variables (numériques vs catégorielles) X
+	•	La présence de valeurs manquantes X
+	•	Compter la proportion de personnes “fit” et “non-fit”. 60 unfit 40 fit
+
+⸻
+
+2) Analyse exploratoire rapide (40 min)
+	•	Visualiser :
+	•	Distribution des variables numériques (histogrammes) X
+	•	Répartition des catégories (smokes, gender, nutrition_quality) X
+	•	Comparer les distributions selon is_fit (ex. boxplots)  D
+	•	Calculer les corrélations entre variables numériques. X -- ? 
+
+⸻
+
+3) Préparation des données (50 min)
+	•	Définir les colonnes numériques et catégorielles.
+	•	Traiter les valeurs manquantes si nécessaire.
+	•	Appliquer un encodage OneHot sur les variables catégorielles.
+	•	Standardiser les variables numériques.
+	•	Séparer le dataset en train, validation et test (70/15/15) avec stratification.
+
+⸻
+
+4) Baseline (15 min)
+	•	Créer un modèle trivial (DummyClassifier) qui prédit toujours la classe majoritaire.
+	•	Noter son score pour servir de référence.
+
+⸻
+
+5) Test de plusieurs modèles (1h15)
+	•	Sélectionner 3 modèles simples :
+	•	Régression logistique (interprétable)
+	•	Forêt aléatoire (non-linéaire, bonne gestion des interactions)
+	•	K plus proches voisins (baseline non paramétrique)
+	•	Lancer une recherche d’hyperparamètres rapide pour chacun (2–3 paramètres max).
+	•	Comparer les scores sur le jeu de validation.
+	•	Garder le meilleur modèle.
+
+⸻
+
+6) Évaluation finale (40 min)
+	•	Réentraîner le meilleur modèle sur l’ensemble train + validation.
+	•	Évaluer sur le jeu test :
+	•	Rapport de classification
+	•	Matrice de confusion
+	•	Interpréter le modèle :
+	•	Importance des variables pour la forêt aléatoire
+	•	Coefficients pour la régression logistique.
+
+⸻
+
+7) Finalisation (15 min)
+	•	Sauvegarder le modèle entraîné.
+	•	Exporter les prédictions du jeu test.
+	•	Rédiger un petit README avec :
+	•	Description du problème
+	•	Variables utilisées
+	•	Meilleur score obtenu
+	•	Instructions pour réutiliser le modèle.
+
+⸻
