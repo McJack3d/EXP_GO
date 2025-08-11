@@ -23,22 +23,22 @@ Feuille de route – Projet “Sport & Fitness Classifier” (5 h)
 	•	Distribution des variables numériques (histogrammes) X
 	•	Répartition des catégories (smokes, gender, nutrition_quality) X
 	•	Comparer les distributions selon is_fit (ex. boxplots)  D
-	•	Calculer les corrélations entre variables numériques. X -- ? 
+	•	Calculer les corrélations entre variables numériques. X
 
 ⸻
 
 3) Préparation des données (50 min)
-	•	Définir les colonnes numériques et catégorielles.
-	•	Traiter les valeurs manquantes si nécessaire.
-	•	Appliquer un encodage OneHot sur les variables catégorielles.
-	•	Standardiser les variables numériques.
-	•	Séparer le dataset en train, validation et test (70/15/15) avec stratification.
+	•	Définir les colonnes numériques et catégorielles. X
+	•	Traiter les valeurs manquantes si nécessaire. X
+	•	Appliquer un encodage OneHot sur les variables catégorielles. X
+	•	Standardiser les variables numériques. X
+	•	Séparer le dataset en train, validation et test (70/15/15) avec stratification. X
 
 ⸻
 
-4) Baseline (15 min)
-	•	Créer un modèle trivial (DummyClassifier) qui prédit toujours la classe majoritaire.
-	•	Noter son score pour servir de référence.
+4) Baseline (15 min) 
+	•	Créer un modèle trivial (DummyClassifier) qui prédit toujours la classe majoritaire. X
+	•	Noter son score pour servir de référence. 0.6 et un bon 0
 
 ⸻
 

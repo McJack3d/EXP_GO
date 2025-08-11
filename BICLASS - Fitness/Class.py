@@ -67,3 +67,4 @@ val, test = train_test_split(temp, test_size=0.5, stratify=temp['is_fit'], rando
 
 ###Reg Logi
 model = LogisticRegression(random_state=42)
+
