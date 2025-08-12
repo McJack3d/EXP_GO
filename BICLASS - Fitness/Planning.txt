@@ -44,7 +44,7 @@ Feuille de route – Projet “Sport & Fitness Classifier” (5 h)
 
 5) Test de plusieurs modèles (1h15)
 	•	Sélectionner 3 modèles simples :
-	•	Régression logistique (interprétable)
+	•	Régression logistique (interprétable) X
 	•	Forêt aléatoire (non-linéaire, bonne gestion des interactions)
 	•	K plus proches voisins (baseline non paramétrique)
 	•	Lancer une recherche d’hyperparamètres rapide pour chacun (2–3 paramètres max).
