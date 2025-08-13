@@ -44,20 +44,20 @@ Feuille de route – Projet “Sport & Fitness Classifier” (5 h)
 
 5) Test de plusieurs modèles (1h15)
 	•	Sélectionner 3 modèles simples :
-	•	Régression logistique (interprétable) X
-	•	Forêt aléatoire (non-linéaire, bonne gestion des interactions)
-	•	K plus proches voisins (baseline non paramétrique)
-	•	Lancer une recherche d’hyperparamètres rapide pour chacun (2–3 paramètres max).
-	•	Comparer les scores sur le jeu de validation.
-	•	Garder le meilleur modèle.
+	•	Régression logistique (interprétable) X Accuracy: AccuracyLR: 0.7733333333333333, F1LR: 0.6936936936936937
+	•	Forêt aléatoire (non-linéaire, bonne gestion des interactions): AccuracyRF: 0.76, F1RF: 0.660377358490566
+	•	K plus proches voisins (baseline non paramétrique): AccuracyKN: 0.6133333333333333, F1KN: 0.46788990825688076
+	•	Lancer une recherche d’hyperparamètres rapide pour chacun (2–3 paramètres max). X
+	•	Comparer les scores sur le jeu de validation. ?
+	•	Garder le meilleur modèle. ?
 
 ⸻
 
 6) Évaluation finale (40 min)
 	•	Réentraîner le meilleur modèle sur l’ensemble train + validation.
 	•	Évaluer sur le jeu test :
-	•	Rapport de classification
-	•	Matrice de confusion
+	•	Rapport de classification X
+	•	Matrice de confusion X
 	•	Interpréter le modèle :
 	•	Importance des variables pour la forêt aléatoire
 	•	Coefficients pour la régression logistique.
