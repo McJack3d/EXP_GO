@@ -1,1 +1,2 @@
-Tests pour prendre de l'exp en code + AI/ML
+Tests pour prendre de l'exp en coding + AI/ML
+Let's beat the outlier
