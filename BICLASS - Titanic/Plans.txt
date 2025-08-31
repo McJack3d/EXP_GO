@@ -1,0 +1,5 @@
+    1.  Charger ton modèle entraîné : Tu reprends ton modèle que tu as déjà entraîné sur les données du Titanic.
+	2.	Interface de saisie des caractéristiques : Tu ajoutes un petit bout de code qui demande à l’utilisateur d’entrer l’âge, le genre, la classe, etc. pour un passager fictif.
+	3.	Préparer ces données pour le modèle : Tu transformes ces entrées utilisateur en une forme que ton modèle peut comprendre (par exemple, en encodant les catégories si nécessaire).
+	4.	Faire la prédiction : Tu utilises ton modèle pour prédire si ce passager fictif aurait survécu ou non.
+	5.	Afficher le résultat de manière ludique : Tu présentes le résultat de façon un peu fun, par exemple en affichant un petit message du genre : “D’après le modèle, ce passager fictif aurait eu X% de chances de survivre.”
