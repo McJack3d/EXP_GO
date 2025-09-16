@@ -125,4 +125,5 @@ print(f"Total profit over the last 4 years :{px}")
 """
 
 #prgm 9
-print ("Wich Fibonacci number would you want to ")
+print ("Wich Fibonacci number would you want to print ?")
+n = int(input())
