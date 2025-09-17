@@ -127,3 +127,8 @@ print(f"Total profit over the last 4 years :{px}")
 #prgm 9
 print ("Wich Fibonacci number would you want to print ?")
 n = int(input())
+
+a, b = 0, 1
+while a <= n:
+    print(a, end=" ")
+    a, b = b, a + b
