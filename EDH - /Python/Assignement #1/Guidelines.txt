@@ -1,0 +1,45 @@
+Exercise 1: HR Support
+1. You are asked to help the HR department of a company with tasks related to determining the salary of
+new and existing employees.
+The company uses a salary grade-based system, where an employee is placed into a salary grade based
+on their number of years of experience in their role or another position at a similar level. Years of
+experience in positions at a lower level are also taken into account for the salary grade but only at half
+their value, i.e., four years in a lower level position counts equivalent to two years at the level of the
+considered position. The calculation for the salary grade allows to combine years of experience at the
+considered level with the discounted amount of years of a lower level, but at both levels only whole years
+of experience can enter the calculation (before discounting in case of lower level experience). The final
+salary grade is determined according to the below table:
+1
+Salary Grade A B C D E
+Amount of experience (years) < 2 2 – 5 6 – 11 12 – 19 → 20
+The HR department is especially interested in help with salaries for the “Analyst” and “Senior Analyst”
+roles. At this company, the minimum monthly salary for employees in the di!erent grades for these roles
+are as in the below table:
+Salary Grade A B C D E
+Analyst 2700 2900 3300 3600 3900
+Senior Analyst 3800 4200 4400 4700 5100
+Perform the following steps, combining all the code you write into a single Python script (i.e., .py file):
+(a) Write a function salary_grade(years_similar, years_lower) that determines the salary grade (A, B,
+C, etc) based on two parameters: (1) the number of full years of experience in a position at the
+required level (years_similar) and (2) the number of full years of experience in position at a lower
+level (years_lower). The function should return a string value that corresponds to the letter of the
+grade that the employee is in.
+(b) Write a function minimum_salary(role, grade) that returns the minimum salary (as int value) for
+an employee within a given role and salary grade. The parameters correspond to (1) a string
+representing the role of the employee ("Analyst" or "Senior Analyst"), and (2) a string with the letter
+of the grade the employee is in.
+(c) Write a function is_above_minimum(role, grade, salary) that returns True if the current monthly salary
+of an employee is above or at the minimum salary for his role and salary grade, and False otherwise.
+The role and grade parameters take the same form as in the previous parts, while salary is an integer
+parameter giving the current monthly salary of the employee
+(d) The main code in your Python script should allow the HR employee to specify whether they want
+to perform a calculation for an existing or new employee.
+Then:
+• For a new employee, the program should ask for the years of experience at a similar and lower
+level and the intended role for this employee (Analyst or Senior Analyst). Afterwards it should
+print the minimum salary that this employee should get.
+• For an existing employee, it should ask for the role and salary grade that the employee is in,
+as well as for their current salary. The program should then print if the employee is above the
+minimum required salary for their role and salary grade.
+Make sure to use the functions that you defined in the previous parts and to print appropriate
+output to the console for the HR employee.
