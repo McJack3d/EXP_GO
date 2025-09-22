@@ -1,0 +1,30 @@
+Exercise Set 3: Conditional Statements & Simple Loops
+
+While Loops
+1. Write a program that computes the largest power of a given base number k that is (strictly) below a
+given upper bound u. The program should ask the user for the base number k and upper bound u and
+print the computed largest power.
+
+2. (a) Write a program that computes the average of numbers inputted by the user. The program should
+continue accepting numbers until the user tells it to quit by entering “q” and should afterwards print
+the average of the inputted numbers.
+(b) Repeat the previous exercise but now assume that program should calculate the standard deviation
+of the entered numbers instead of the average.
+Functions
+
+3. Write a function rectangle_area that computes the area of a rectangle and prints it to the user. Include
+appropriate parameters, such that the user can use this function to calculate the area of rectangles of
+varyings lengths and widths.
+
+4. Write a function with the name compute_savings that takes two parameters: the initial savings and the
+expected interest rate. The function should return, i.e., return to the calling code, the expected savings
+after one year as a float.
+
+5. (a) Write a function compute_factorial(base) that returns the factorial n! = 1 → 2 → . . . n of a given base
+number n as an int. Moreover, ask the user for the base number in your main code and print the
+factorial of this base number for the user after calling the function in an appropriate manner.
+(b) Write a second function compute_sum_factorials(first_base, second_base), within the same program,
+that computes the sum of the factorials of two base numbers n1 and n2. Make sure to use the
+function that you have written in the previous part.
+6. Go back to the functions you wrote in 3 – 5 and add type hints with the definition of the parameters of
+the function.
