@@ -31,6 +31,7 @@ def minimum_salary(role, grade):
         return referenceS[grade]
         
 #c)
+print("\nPlease be aware that the following calculator is very sensitive to input mistakes such as typping errors.\n")
 status = str(input("Calculation for a new employee(y/n) :")).lower()
 
 if status == "y" :
@@ -46,8 +47,7 @@ elif status != "y" :
     grade = str(input("What is the employee seniority grade(A/B/C/D/E): ")).capitalize()
     current_salary = int(input("What is the employee current salary: "))
 
-    if minimum_salary(role, grade) > current_salary :
-        high_salary = (minimum_salary(role, grade) - current_salary)
-        print("{(minimum_salary(role, grade) - current_salary)}should)
-    elif current_salary > minimum_salary(role, grade):
-        print(str(minimum_salary(role, grade) - current_salary))
+    if minimum_salary(role, grade) < current_salary :
+        print(f"The salary is above average considereing : senoriety and role withon the company")
+    elif current_salary < minimum_salary(role, grade):
+        print(f"The salary is bellow average considering : senoriety and role within the company")
