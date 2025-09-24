@@ -23,7 +23,7 @@ def largest_prime_below(number):
     return largest_square
 
 #c)
-while True:
+while True: #continous loop till "q"
     user_input = input("Please input a number (or 'q' to quit):")
     
     if user_input =="q" :
