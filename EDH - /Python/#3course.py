@@ -52,9 +52,12 @@ print(f"The expected total savings after year 1 should be : {compute_savings(sav
 #a)
 base = int(input("Input the number you wanna see the factorial of :"))
 
-def compute_factorial(base) : 
-    for base in base :
-     n =+ base 
-    return n  
+def compute_factorial(n) : 
+    result = 1
+    for i in range(2, n + 1) 
+        result *= i
+    return result
 
 print(compute_factorial(base))
+
+#b)
