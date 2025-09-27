@@ -61,3 +61,5 @@ def compute_factorial(n) :
 print(compute_factorial(base))
 
 #b)
+def compute_sum_factorials(first_base, second_base):
+    resu =
