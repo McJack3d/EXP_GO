@@ -23,4 +23,11 @@ while True :
 """
 
 def first_woodall_numbers(k : int):
-    
+    res = []
+    for n in range(1, k + 1):  # n starts from 1, goes to k
+        calc = n * (2 ** n) - 1  # Woodall formula: n × 2^n - 1
+        res.append(calc)
+    return res
+
+def is_woodwall_number(number : int):
+    return
