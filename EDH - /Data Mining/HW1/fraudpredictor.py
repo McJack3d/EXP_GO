@@ -26,7 +26,7 @@ diff = X_transformed - mu
 md_squared = np.sum(diff @ inv_cov * diff, axis=1)
 
 K = X_transformed.shape[1]
-chi2_threshold = chi2.ppf(0.95, df=K)
+chi2_threshold = chi2.ppf(0.999, df=K)
 
 outliers = md_squared > chi2_threshold
 my_predictions = outliers.astype(int)
