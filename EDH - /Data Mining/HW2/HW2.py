@@ -14,6 +14,6 @@ k = 4
 Z = sch.linkage(df_reduced, method='ward', metric='euclidean')
 labels = sch.fcluster(Z, t=k, criterion='maxclust')
 
-labels = labels - 1
+labels = labels - 1 
 
 pd.DataFrame(labels).to_csv('predictions.csv', header=False, index=False)
